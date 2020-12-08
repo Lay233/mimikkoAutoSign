@@ -6,7 +6,7 @@ use Curl\Curl;
 class Mimikko {
     private $host = "https://api1.mimikko.cn";
     private $userAgent = "okhttp/3.8.0";
-    private $appId = "R5sxL6wSY1o6SBMi";
+    private $appId = "wjB7LOP2sYkaMGLC";
     private $curlInstance;
     private $user;
     private $password;
@@ -29,7 +29,7 @@ class Mimikko {
         $this->curlInstance->setHeader("User-Agent", $this->userAgent);
         $this->curlInstance->setHeader("Content-Type", "application/json");
         $this->curlInstance->setHeader("Accept-Language", "zh-cn");
-        $this->curlInstance->setHeader("AppID", "R5sxL6wSY1o6SBMi");
+        $this->curlInstance->setHeader("AppID", $this->appId);
         
     }
     /**
@@ -66,18 +66,24 @@ class Mimikko {
     }
     
     /**
-     * 获取用户唯一ID
+     * 获取助手ID
      * @return $this
      */
     public function getServantId(){
         $this->getUserOwnInformation();
-        $url = $this->host . "/client/love/GetUserServantInstance";
+        $url = $this->host . "/client/Servant/GetServantList?startIndex=0&count=9999";
         $this->curlInstance->get($url);
         
         $this->getError();
         
         $this->response[__FUNCTION__] = $response = json_decode($this->curlInstance->response, true);
-        $this->servantId = $response['body']['ServantId'] ?? "";
+        $this->servantId = "";
+        foreach($response['body']['Items'] as $servant){
+            if($servant['IsDefault']){
+                $this->servantId = $servant['ServantId'];
+                break;
+            }
+        }
         
         return $this;
     }

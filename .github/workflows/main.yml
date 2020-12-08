@@ -1,0 +1,23 @@
+name: Mimikko Auto Sign
+
+on:
+  schedule:
+    - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update
+
+      - name: Run mimikkosign
+        run: |
+          php index.php -u ${{ secrets.MIMIKKOUSER }} -p ${{ secrets.MIMIKKOPASSWORD }}

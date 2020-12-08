@@ -1,17 +1,17 @@
 <?php
 /**
- * Mimikko ×Ô¶¯Ç©µ½
- * Íû×ÅÒ£Ò£²»ÖÁµÄ4¼¶£¬²»ÖªºÎÊ±²ÅÄÜµ½´ï¡£
- * »òÕßÂò»áÔ±×Ô¶¯Ç©µ½Ò²¿ÉÒÔ½ÓÊÜ¡£
+ * Mimikko è‡ªåŠ¨ç­¾åˆ°
+ * æœ›ç€é¥é¥ä¸è‡³çš„4çº§ï¼Œä¸çŸ¥ä½•æ—¶æ‰èƒ½åˆ°è¾¾ã€‚
+ * æˆ–è€…ä¹°ä¼šå‘˜è‡ªåŠ¨ç­¾åˆ°ä¹Ÿå¯ä»¥æŽ¥å—ã€‚
  *
- * ÓÃ·¨£º
- * Usage: ¸ü¸Ä $config ÀïµÄÓÃ»§ÃûºÍÃÜÂë, È»ºó php v2,php
+ * ç”¨æ³•ï¼š
+ * Usage: æ›´æ”¹ $config é‡Œçš„ç”¨æˆ·åå’Œå¯†ç , ç„¶åŽ php v2,php
  *
- * ½à°×(£à?¦Ø??)
- * ÉÁÒ«(^?¦Ø?^ ) 0w0 ¡û
- * Ææ¼£¡«(£þ¨Œ£þ¡«)
- * Ö®»¨(¡«£þ¨Œ£þ)¡«
- * White Lily(¡ã?¡ã)©g
+ * æ´ç™½(ï½€?Ï‰??)
+ * é—ªè€€(^?Ï‰?^ ) 0w0 â†
+ * å¥‡è¿¹ï½ž(ï¿£â–½ï¿£ï½ž)
+ * ä¹‹èŠ±(ï½žï¿£â–½ï¿£)ï½ž
+ * White Lily(Â°?Â°)ã‚ž
  * 
  * @author: CYGM <mailcygm@gmail.com && hana@9999.moe>
  * @version: 1.0.0
@@ -22,9 +22,11 @@ use src\Mimikko;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+$userinfo = getopt('u:p:');
+
 $config = [
-    "user" => "",
-    "password" => ""
+    "user" => $userinfo['u'],
+    "password" => $userinfo['p']
 ];
 
 $mimikko = new Mimikko($config["user"], $config['password']);
@@ -35,6 +37,7 @@ $mimikko->getToken()
         ->SignAndSignInformationV2()
         ;
 
-echo "[" . date('Y-m-d') . "]" . "  " . json_encode($mimikko->response) . PHP_EOL;
+//echo "[" . date('Y-m-d') . "]" . "  " . json_encode($mimikko->response) . PHP_EOL;
+echo "Sign successfully";
 
 unset($mimikko);
