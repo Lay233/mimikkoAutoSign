@@ -34,7 +34,7 @@ $mimikko = new Mimikko($config["user"], $config['password']);
 $mimikko->getToken()
         ->getServantId()
         ->getExchangeReward()
-        ->SignAndSignInformationV2()
+        ->SignAndSignInformationV3()
         ;
 
 //echo "[" . date('Y-m-d') . "]" . "  " . json_encode($mimikko->response) . PHP_EOL;

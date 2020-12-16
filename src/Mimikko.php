@@ -30,6 +30,7 @@ class Mimikko {
         $this->curlInstance->setHeader("Content-Type", "application/json");
         $this->curlInstance->setHeader("Accept-Language", "zh-cn");
         $this->curlInstance->setHeader("AppID", $this->appId);
+        $this->curlInstance->setHeader("Version", "3.1.2");
         
     }
     /**
@@ -43,7 +44,7 @@ class Mimikko {
                     'password' => hash('sha256', $this->password)
                 )));
         
-        $this->getError();
+        // $this->getError();
         
         $this->response[__FUNCTION__] = $response = json_decode($this->curlInstance->response, true);
         
@@ -74,7 +75,7 @@ class Mimikko {
         $url = $this->host . "/client/Servant/GetServantList?startIndex=0&count=9999";
         $this->curlInstance->get($url);
         
-        $this->getError();
+        // $this->getError();
         
         $this->response[__FUNCTION__] = $response = json_decode($this->curlInstance->response, true);
         $this->servantId = "";
@@ -99,7 +100,7 @@ class Mimikko {
             'servantId' => $this->servantId
         ));
         
-        $this->getError();
+        // $this->getError();
         
         $this->response[__FUNCTION__] = $response = json_decode($this->curlInstance->response);
         return $this;
@@ -108,28 +109,28 @@ class Mimikko {
      * 签到
      * @return $this
      */
-    public function SignAndSignInformationV2(){
-        $url = $this->host . "/client/RewardRuleInfo/SignAndSignInformationV2/" . urlencode($this->userName);
+    public function SignAndSignInformationV3(){
+        $url = $this->host . "/client/RewardRuleInfo/SignAndSignInformationV3/";
         
         $this->curlInstance->get($url);
         
-        $this->getError();
+        // $this->getError();
         
         $this->response[__FUNCTION__] = $response = json_decode($this->curlInstance->response);
         return $this;
     }
 
 
-    private function getError(){
-        if($this->curlInstance->error_code !== 0 || !empty($this->curlInstance->error_message)){
-            throw new Exception(__FUNCTION__ . "异常" . json_encode([
-                "response"              => $this->response,
-                "request_headers"       => $this->curlInstance->request_headers,
-                "error_code" => $this->curlInstance->error_code,
-                "error_message" => $this->curlInstance->error_message
-            ]));
-        }
-    }
+    // private function getError(){
+    //     if($this->curlInstance->error_code !== 0 || !empty($this->curlInstance->error_message)){
+    //         throw new Exception(__FUNCTION__ . "异常" . json_encode([
+    //             "response"              => $this->response,
+    //             "request_headers"       => $this->curlInstance->request_headers,
+    //             "error_code" => $this->curlInstance->error_code,
+    //             "error_message" => $this->curlInstance->error_message
+    //         ]));
+    //     }
+    // }
     
     function __destruct() {
         $this->curlInstance->close();
