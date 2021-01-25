@@ -30,7 +30,7 @@ class Mimikko {
         $this->curlInstance->setHeader("Content-Type", "application/json");
         $this->curlInstance->setHeader("Accept-Language", "zh-cn");
         $this->curlInstance->setHeader("AppID", $this->appId);
-        $this->curlInstance->setHeader("Version", "3.1.2");
+        $this->curlInstance->setHeader("Version", "3.1.3");
         
     }
     /**
