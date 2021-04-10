@@ -22,7 +22,7 @@ use src\Mimikko;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$userinfo = getopt('u:782004797@qq.com p:123456789');
+$userinfo = getopt('u:p:');
 
 $config = [
     "user" => $userinfo['u'],
