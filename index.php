@@ -25,8 +25,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 $userinfo = getopt('u:p:');
 
 $config = [
-    "user" => $userinfo['u'],
-    "password" => $userinfo['p']
+    "user" => $userinfo['782004797@qq.com'],
+    "password" => $userinfo['123456789']
 ];
 
 $mimikko = new Mimikko($config["user"], $config['password']);
