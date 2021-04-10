@@ -22,11 +22,11 @@ use src\Mimikko;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$userinfo = getopt('u:p:');
+$userinfo = getopt('u:782004797@qq.com p:123456789');
 
 $config = [
-    "user" => $userinfo['782004797@qq.com'],
-    "password" => $userinfo['123456789']
+    "user" => $userinfo['u'],
+    "password" => $userinfo['p']
 ];
 
 $mimikko = new Mimikko($config["user"], $config['password']);
